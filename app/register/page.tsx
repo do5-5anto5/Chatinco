@@ -39,14 +39,16 @@ import {
 } from "@mui/icons-material";
 
 /**
- * RegisterPage component.
- * This component renders a register page with a form to input name, email, password, confirm password, and accept terms.
- * It also renders a submit button to submit the form.
- * If the form is invalid, it displays an error message.
- * If the form is submitting, it displays a loading message.
- * If the form is submitted successfully, it navigates to the home page.
- * The component also renders a section for social media login buttons (Google, Facebook, Apple).
- * It also renders a footer with a link to the login page.
+ * The RegisterPage component renders a registration form with fields for name, email, password, confirm password, and terms acceptance.
+ * The form also includes a submit button that is disabled while the form is being submitted.
+ * The component also renders a divider line with the text "OR SIGN UP WITH" and three social media sign up buttons below the form.
+ * The component also renders an AuthFooter component with a link to the login page.
+ * The component uses the MUI library for its styling and components.
+ * The component uses the useRouter hook from next/navigation to navigate to the login page when the login button is clicked.
+ * The component uses the useState hook to store the form data, whether the form is being submitted, and any error messages that occur during form submission.
+ * The component uses the handleChange function to update the form data when a field is changed.
+ * The component uses the handleSubmit function to handle form submission.
+ * The component uses the motion library from framer to animate the form and its components.
  */
 const RegisterPage = () => {
   const router = useRouter();
@@ -84,14 +86,14 @@ const RegisterPage = () => {
     console.log("form data: ", formData);
 
     if (formData.password !== formData.confirmPassword) {
-      setError("Senhas não conferem");
+      setError("Password do not match");
 
       setIsSubmitting(false);
       return;
     }
 
     if (!formData.acceptTerms) {
-      setError("Você precisa aceitar os termos e condições para continuar");
+      setError("You must acccept terms and conditions to continue");
 
       setIsSubmitting(false);
       return;
@@ -133,7 +135,7 @@ const RegisterPage = () => {
                 >
                   <TextField
                     fullWidth
-                    label="Nome Completo"
+                    label="Full Name"
                     variant="outlined"
                     margin="normal"
                     name="name"
@@ -158,7 +160,7 @@ const RegisterPage = () => {
                 >
                   <TextField
                     fullWidth
-                    label="Email"
+                    label="Email Address"
                     variant="outlined"
                     margin="normal"
                     name="email"
@@ -184,7 +186,7 @@ const RegisterPage = () => {
                 >
                   <TextField
                     fullWidth
-                    label="Senha"
+                    label="Password"
                     variant="outlined"
                     margin="normal"
                     name="password"
@@ -200,9 +202,7 @@ const RegisterPage = () => {
                       ),
                       endAdornment: (
                         <InputAdornment position="end">
-                          <IconButton
-                            onClick={() => setShowPassword(!showPassword)}
-                          >
+                          <IconButton onClick={() => {}}>
                             {showPassword ? <VisibilityOff /> : <Visibility />}
                           </IconButton>
                         </InputAdornment>
@@ -219,7 +219,7 @@ const RegisterPage = () => {
                 >
                   <TextField
                     fullWidth
-                    label="Confirmar Senha"
+                    label="Confirm Password"
                     variant="outlined"
                     margin="normal"
                     name="confirmPassword"
@@ -235,11 +235,7 @@ const RegisterPage = () => {
                       ),
                       endAdornment: (
                         <InputAdornment position="end">
-                          <IconButton
-                            onClick={() =>
-                              setShowConfirmPassword(!showConfirmPassword)
-                            }
-                          >
+                          <IconButton onClick={() => {}}>
                             {showConfirmPassword ? (
                               <VisibilityOff />
                             ) : (
@@ -260,28 +256,23 @@ const RegisterPage = () => {
                 >
                   <FormControlLabel
                     control={
-                      <Box>
-                        <Checkbox
-                          checked={formData.acceptTerms}
-                          onChange={handleChange}
-                          name="acceptTerms"
-                          required
-                        />
-                      </Box>
+                      <Checkbox
+                        checked={formData.acceptTerms}
+                        onChange={handleChange}
+                        name="acceptTerms"
+                        color="primary"
+                        required
+                      />
                     }
                     label={
-                      <Typography variant="body2" color="textSecondary">
-                        Eu aceito os{" "}
-                        <b>
-                          <Link href="/terms">
-                            Termos e Condições
-                          </Link>
-                        </b>
+                      <Typography variant="body2">
+                        I agree to the{" "}
+                        <Link href="/terms" color="primary">
+                          Terms and Conditions
+                        </Link>
                       </Typography>
                     }
-                    sx={{
-                      mt: 1,
-                    }}
+                    sx={{ mt: 1 }}
                   />
                 </motion.div>
 
@@ -320,7 +311,7 @@ const RegisterPage = () => {
                       },
                     }}
                   >
-                    {isSubmitting ? "Criando Conta..." : "Criar Conta"}
+                    {isSubmitting ? "Creating Account..." : "Create Account"}
                   </Button>
                 </motion.div>
               </form>
@@ -332,7 +323,7 @@ const RegisterPage = () => {
               >
                 <Divider sx={{ my: 3 }}>
                   <Typography variant="body2" color="textSecondary">
-                    ou continuar com
+                    OR SIGN UP WITH
                   </Typography>
                 </Divider>
 
@@ -371,10 +362,10 @@ const RegisterPage = () => {
                 transition={{ delay: 1.3 }}
               >
                 <AuthFooter>
-                  <Typography variant="body2" color="textSecondary">
-                    Já tem uma conta?{" "}
+                  <Typography variant="body2">
+                    Already have an account?{" "}
                     <Link href="/login" color="primary">
-                      Entrar
+                      Sign in
                     </Link>
                   </Typography>
                 </AuthFooter>
