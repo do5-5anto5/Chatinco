@@ -12,6 +12,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+import { ToastContainer } from "react-toastify";
 import Nav from "@/components/nav/Nav";
 import TopNav from "@/components/nav/TopNav";
 export const metadata: Metadata = {
@@ -27,6 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <ToastContainer />
         <TopNav />
         <Nav />
 
