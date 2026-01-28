@@ -1,0 +1,51 @@
+require("dotenv").config();
+
+const DB_URL = process.env.DB_URL;
+
+const API = process.env.API;
+
+const CLOUDINARY_CLOUD_NAME = process.env.CLOUDINARY_CLOUD_NAME;
+const CLOUDINARY_API_KEY = process.env.CLOUDINARY_API_KEY;
+const CLOUDINARY_API_SECRET = process.env.CLOUDINARY_API_SECRET;
+
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
+
+const NEXTAUTH_SECRET = process.env.NEXTAUTH_SECRET;
+
+const RAZOR_PAY_KEY_ID = process.env.RAZOR_PAY_KEY_ID;
+const RAZOR_PAY_KEY_SECRET = process.env.RAZOR_PAY_KEY_SECRET;
+
+const PAYPAL_CLIENT_ID = process.env.PAYPAL_CLIENT_ID;
+const PAYPAL_CLIENT_SECRET = process.env.PAYPAL_CLIENT_SECRET;
+
+const APP_ID = process.env.APP_ID;
+const KEY = process.env.KEY;
+const SECRET = process.env.SECRET;
+const CLUSTER = process.env.CLUSTER;
+
+module.exports = {
+  DB_URL,
+
+  API,
+
+  CLOUDINARY_CLOUD_NAME,
+  CLOUDINARY_API_KEY,
+  CLOUDINARY_API_SECRET,
+
+  GOOGLE_CLIENT_ID,
+  GOOGLE_CLIENT_SECRET,
+
+  NEXTAUTH_SECRET,
+
+  RAZOR_PAY_KEY_ID,
+  RAZOR_PAY_KEY_SECRET,
+
+  PAYPAL_CLIENT_ID,
+  PAYPAL_CLIENT_SECRET,
+
+  APP_ID,
+  KEY,
+  SECRET,
+  CLUSTER,
+};
